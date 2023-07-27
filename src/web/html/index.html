@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Will I be Pwned?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"
+        crossorigin="anonymous">
+
+    <!-- Site CSS -->
+    <link href="../css/default.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+</head>
+
+<body class="d-flex h-100 text-center text-black bg-light">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main class="px-3">
+            <!-- Check form block -->
+            <div class="row align-items-center g-lg-5 py-5 mt-2">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold lh-1 mb-3">Will I be Pwned?</h1>
+                    <p class="col-lg-10 fs-4">Enter your password here to check how likely it is to get you Pwned</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5" id="checkBlock">
+                    <form class="p-4 p-md-5 border rounded-3 bg-light text-dark" id="checkForm">
+                        <div class="form-floating mb-3">
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Enter a password"
+                                    required name="password">
+                                <div class="input-group-addon">
+                                    <i class="bi bi-eye" id="togglePassword"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Check</button>
+                        <hr class="my-4">
+                        <p><small class="text-muted">Passwords entered here are not transmitted anywhere and remain safe
+                                in your own browser. However, entering an important password into a web site like this
+                                is simply not a good idea. Please don't use any of your current or important
+                                passwords.</small></p>
+                    </form>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5 d-none" id="resultBlock">
+                    <div class="row align-items-left p-4 p-md-5">
+                        <div class="alert alert-info text-left text-lg-start" role="alert" id="complexityMessageAlert">
+                            <strong>Complexity Check: </strong><span id="complexityMessage"></span>
+                        </div>
+                        <div class="alert alert-info text-left text-lg-start" role="alert" id="hibpCheckMessageAlert">
+                            <strong>Well-known Password Check: </strong><span id="hibpCheckMessage"></span>
+                        </div>
+                        <div class="alert alert-info text-left text-lg-start" role="alert" id="scoreMessageAlert">
+                            <strong>Guessability Rating: </strong><span id="scoreMessage"></span>
+                        </div>
+                        <div class="alert alert-info text-left text-lg-start" role="alert" id="timeMessageAlert">
+                            <strong>Brute Force Time Estimate: </strong><span id="timeMessage"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg px-2 me-md-1" id="resetButton">Check
+                            Another</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                <hr class="mb-4">
+
+                <div class="row">
+                    <h2 class="section-heading">What does it all mean?</h2>
+                </div>
+                <div class="row">
+                    <p class="lead">Complexity Check</p>
+                    <p>This is the standard complexity check applied by many websites and other password policies. It is
+                        <strong>not</strong> actually an indicator of password strength, and is provided here for
+                        illustration only. You will notice if you try a few passwords that is easy to create
+                        one that will pass the complexity check but fail all of the more relevant password strength
+                        checks.
+                    </p>
+                    <p>The specific settings used here are minimum 8 characters, at least one uppercase, one lowercase,
+                        one number and one symbol.
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="lead">Well-Known Password Check</p>
+                    <p>This check uses the Have I Been Pwned (HIBP) database to check if the password has appeared in a
+                        hack or breach. HIBP tracks and stores the data from password dumps found on the internet and
+                        dark web. If your password is found here you can be sure that a brute force attack will crack it
+                        quickly. The scrore indicates how many times it appears in the hacked password lists, which
+                        gives you some indication of how many other people used it as their own.
+                    </p>
+                    <p>You can find more information and check if your own personal data is included in the HIBP
+                        database here.
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="lead">Guessability Rating</p>
+                    <p>This check gives you some indication of the actual complexity of your password. It uses an
+                        algorithm and lists of common words and phrases, as well as common combinations of characters
+                        and symbols used in passwords.
+                    </p>
+                    <p>The check uses the zxcvbn tool, originally created by the Dropbox team and then shared with the
+                        world as an Open Source project. For the technically minded you can find more information here.
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="lead">Brute Force Time Estimate</p>
+                    <p>This check uses the same zxcvbn tool and provides you with some estimate of how long it might
+                        take to crack your password using commonly available brute-force cracking tools. You will notice
+                        if you try a few passwords that extending the length is far more important than trying to add
+                        complexity.
+                    </p>
+                    <p>The time to crack stolen passwords is also dependent on how they are stored. If they are stored
+                        in plaintext there is no need to crack at all. If they are stored using old school hashing
+                        techniques brute-force cracking is relatively simple, and if they are stored using more secure
+                        hashing and salting then brute-force cracking is significantly more difficult. A useful
+                        explanation is provided here.
+                    </p>
+                </div>
+                <hr class="mb-4">
+            </div>
+            <footer class="container pt-0 pb-3 text-start">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <h5>Learning Links</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="link-secondary"
+                                    href="https://medium.com/p/69476ca9fe92"
+                                    target="_blank">Medium: How Most Password Policies Make us Less Secure</a></li>
+                            <li><a class="link-secondary"
+                                    href="https://medium.com/@markilott/password-storage-basics-2aa9e1586f98"
+                                    target="_blank">Medium: Password Storage Basics</a></li>
+                            <li><a class="link-secondary" href="https://github.com/"
+                                    target="_blank">GitHub Project
+                                    Repo</a></li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md">
+                        <h5>Technical Resources</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="link-secondary"
+                                    href="https://github.com/markilott"
+                                    target="_blank">GitHub Source Code</a></li>
+                            <li><a class="link-secondary"
+                                    href="https://haveibeenpwned.com/"
+                                    target="_blank">Have I Been Pwned?</a></li>
+                            <li><a class="link-secondary" href="https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation"
+                                    target="_blank">zxcvbn Password Complexity Utility</a></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+
+    <!-- Page scripts -->
+    <script type="module" src="../ts/index.ts" defer></script>
+</body>
+
+</html>
