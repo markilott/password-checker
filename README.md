@@ -11,7 +11,7 @@ In a nutshell, the site is designed to demonstrate:
 - password strength checking using [zxcvbn](https://www.npmjs.com/package/zxcvbn)
 - how typical complexity checks can give you a false sense of security
 
-Note this is definitely not production ready code! In particular, the zxcvbn module is not optimised for web distribution (because definitely not a front-end dev).
+Note this is definitely not production ready code! In particular, the zxcvbn module is not optimised for web distribution (because I'm definitely not a front-end dev).
 
 &nbsp;
 
