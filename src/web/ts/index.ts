@@ -34,6 +34,10 @@ function resetResult() {
     timeMessageAlert.classList.replace('alert-warning', 'alert-info');
     resultBlock.classList.add('d-none');
     checkBlock.classList.remove('d-none');
+    if (passwordInput.type === 'text') {
+        passwordInput.type = 'password';
+        togglePassword.classList.replace('bi-eye-slash', 'bi-eye');
+    }
 }
 
 /** Form handler */

@@ -41,7 +41,7 @@ export function check(password: string) {
     return {
         score,
         scoreMessage: `Password is ${scoreMsg}`,
-        timeMessage: (offlineFastHashing1e10PerSecond === offlineSlowHashing1e4PerSecond) ? `If your password is stolen it will take ${offlineFastHashing1e10PerSecond} to crack` : `If your password is stolen, it will take between ${offlineFastHashing1e10PerSecond} and ${offlineSlowHashing1e4PerSecond} to crack depending on the methods used to store the password.`,
+        timeMessage: (offlineFastHashing1e10PerSecond === offlineSlowHashing1e4PerSecond) ? `If your password hash is stolen it will take ${offlineFastHashing1e10PerSecond} to crack` : `If your password hash is stolen, it will take between ${offlineFastHashing1e10PerSecond} and ${offlineSlowHashing1e4PerSecond} to crack depending on the methods used to store the password.`,
         warning,
         suggestions,
     };

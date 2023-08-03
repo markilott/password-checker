@@ -92,11 +92,14 @@
                     <p>This check uses the Have I Been Pwned (HIBP) database to check if the password has appeared in a
                         hack or breach. HIBP tracks and stores the data from password dumps found on the internet and
                         dark web. If your password is found here you can be sure that a brute force attack will crack it
-                        quickly. The scrore indicates how many times it appears in the hacked password lists, which
+                        quickly. The score indicates how many times it appears in the hacked password lists, which
                         gives you some indication of how many other people used it as their own.
                     </p>
+                    <p>Note the HIBP API uses a clever technique that means we do not send your password itself for
+                        checking - we are only sending a partial hash of the password and your secret stays safe right
+                        here.</p>
                     <p>You can find more information and check if your own personal data is included in the HIBP
-                        database here.
+                        database <a class="link-secondary" href="https://haveibeenpwned.com/" target="_blank">here</a>.
                     </p>
                 </div>
                 <div class="row">
@@ -106,7 +109,10 @@
                         and symbols used in passwords.
                     </p>
                     <p>The check uses the zxcvbn tool, originally created by the Dropbox team and then shared with the
-                        world as an Open Source project. For the technically minded you can find more information here.
+                        world as an Open Source project. For the technically minded you can find more information <a
+                            class="link-secondary"
+                            href="https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation"
+                            target="_blank">here</a>.
                     </p>
                 </div>
                 <div class="row">
@@ -120,7 +126,9 @@
                         in plaintext there is no need to crack at all. If they are stored using old school hashing
                         techniques brute-force cracking is relatively simple, and if they are stored using more secure
                         hashing and salting then brute-force cracking is significantly more difficult. A useful
-                        explanation is provided here.
+                        explanation is provided <a class="link-secondary"
+                            href="https://medium.com/@markilott/password-storage-basics-2aa9e1586f98"
+                            target="_blank">here</a>.
                     </p>
                 </div>
                 <hr class="mb-4">
@@ -144,14 +152,12 @@
                     <div class="col-12 col-md">
                         <h5>Technical Resources</h5>
                         <ul class="list-unstyled text-small">
-                            <li><a class="link-secondary"
-                                    href="https://github.com/markilott"
-                                    target="_blank">GitHub Source Code</a></li>
-                            <li><a class="link-secondary"
-                                    href="https://haveibeenpwned.com/"
-                                    target="_blank">Have I Been Pwned?</a></li>
-                            <li><a class="link-secondary" href="https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation"
-                                    target="_blank">zxcvbn Password Complexity Utility</a></li>
+                            <li><a class="link-secondary" href="https://github.com/markilott" target="_blank">GitHub
+                                    Source Code</a></li>
+                            <li><a class="link-secondary" href="https://haveibeenpwned.com/API/v3" target="_blank">Have
+                                    I Been Pwned API</a></li>
+                            <li><a class="link-secondary" href="https://zxcvbn-ts.github.io/zxcvbn/guide/"
+                                    target="_blank">zxcvbn Documentation</a></li>
                             </li>
                         </ul>
                     </div>
