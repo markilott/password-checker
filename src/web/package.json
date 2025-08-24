@@ -18,20 +18,21 @@
         }
     },
     "dependencies": {
-        "@zxcvbn-ts/core": "^3.0.2",
-        "@zxcvbn-ts/language-common": "^3.0.3",
-        "@zxcvbn-ts/language-en": "^3.0.1"
+        "@zxcvbn-ts/core": "^3.0.4",
+        "@zxcvbn-ts/language-common": "^3.0.4",
+        "@zxcvbn-ts/language-en": "^3.0.2"
     },
     "devDependencies": {
-        "@parcel/config-default": "^2.9.2",
-        "@types/node": "^18.15.11",
-        "@types/web": "^0.0.93",
+        "@parcel/config-default": "^2.15.4",
+        "@types/node": "^24.3.0",
+        "@types/web": "^0.0.263",
         "buffer": "^6.0.3",
-        "crypto-browserify": "^3.12.0",
+        "crypto-browserify": "^3.12.1",
         "events": "^3.3.0",
-        "parcel": "^2.9.2",
+        "parcel": "^2.15.4",
         "process": "^0.11.10",
         "stream-browserify": "^3.0.0",
-        "util": "^0.12.5"
+        "util": "^0.12.5",
+        "vm-browserify": "^1.1.2"
     }
 }

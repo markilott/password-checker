@@ -10,9 +10,13 @@ import { Certificate, CertificateValidation, ICertificate } from 'aws-cdk-lib/aw
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { BlockPublicAccess, Bucket } from 'aws-cdk-lib/aws-s3';
 import {
-    CloudFrontWebDistribution, OriginAccessIdentity, SecurityPolicyProtocol, ViewerCertificate,
+    AllowedMethods,
+    CachePolicy,
+    Distribution, HttpVersion, OriginAccessIdentity, SecurityPolicyProtocol,
+    ViewerProtocolPolicy,
 } from 'aws-cdk-lib/aws-cloudfront';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
+import { S3BucketOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 
 /**
  * Deploys the application including website and CloudFront distribution
@@ -67,34 +71,27 @@ export class ApplicationStack extends Stack {
             removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
         });
-        const oia = new OriginAccessIdentity(this, 'oai', {
-            comment: 'Password Check CF Distribution',
-        });
-        webBucket.grantRead(oia);
 
         // CloudFront web distribution
-        const webDist = new CloudFrontWebDistribution(this, 'WebDist', {
-            originConfigs: [
-                {
-                    s3OriginSource: {
-                        s3BucketSource: webBucket,
-                        originAccessIdentity: oia,
-                    },
-                    behaviors: [{ isDefaultBehavior: true }],
-                },
-            ],
-            // Attach custom domain certificate
-            viewerCertificate: (this.zone && this.webCert) ? ViewerCertificate.fromAcmCertificate(this.webCert, {
-                aliases: [`${webHostname}.${this.zone.zoneName}`],
-                securityPolicy: SecurityPolicyProtocol.TLS_V1_2_2021,
-            }) : undefined,
+        const webDist = new Distribution(this, 'WebDist', {
+            defaultBehavior: {
+                origin: S3BucketOrigin.withOriginAccessControl(webBucket),
+                cachePolicy: CachePolicy.CACHING_OPTIMIZED,
+                viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+            },
+            defaultRootObject: 'index.html',
+            certificate: this.webCert,
+            domainNames: this.zone ? [`${webHostname}.${this.zone.zoneName}`] : undefined,
+            minimumProtocolVersion: SecurityPolicyProtocol.TLS_V1_2_2021,
+            httpVersion: HttpVersion.HTTP2_AND_3,
         });
         const cfDomain = webDist.distributionDomainName;
 
         // Output the CloudFront endpoint
         new CfnOutput(this, 'CloudFrontEndpoint', {
             description: 'CloudFront endpoint URL',
-            value: `https://${cfDomain}`,
+            value: `https://${cfDomain}`
         });
 
         // Deploy the web files
