@@ -60,6 +60,7 @@ export async function check(password: string) {
             message: text,
         };
     } catch (err) {
+        console.error('Error checking password against HIBP:', err);
         return result;
     }
 }

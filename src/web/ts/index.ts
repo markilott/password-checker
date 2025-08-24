@@ -114,6 +114,7 @@ window.onload = function loadPage() {
     try {
         return true;
     } catch (err) {
+        console.error('Error loading page:', err);
         return false;
     }
 };
