@@ -10,9 +10,7 @@ module.exports = [
   // Top-level ignore for cdk.out and JS files
   {
     ignores: [
-      'cdk.out',
       '**/cdk.out/**',
-      '*.js',
       '**/*.js',
       'dist',
       '*.d.ts',
