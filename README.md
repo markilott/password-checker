@@ -31,6 +31,10 @@ Requirements:
 
 The endpoint URL will be output in the CLI and in CloudFormation in the console.
 
+&nbsp;
+
+## Customising the Deployment
+
 To customise using your own Route53 Domain edit the `config/local.ts` file (created when you run `npm run build`)
 
 &nbsp;
