@@ -6,14 +6,18 @@ const tseslint = require('typescript-eslint');
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 module.exports = [
+  ...compat.extends('plugin:vue/vue3-essential'),
+  ...compat.extends('eslint:recommended'),
+  ...compat.extends('@vue/eslint-config-typescript'),
+  ...compat.extends('@vue/eslint-config-prettier'),
   ...compat.extends('plugin:@typescript-eslint/recommended'),
   ...compat.extends('plugin:@typescript-eslint/recommended-requiring-type-checking'),
   ...tseslint.configs.recommendedTypeChecked,
   {
     ignores: [
       'dist',
-      '.parcel-cache',
       '*.js',
+      'vite.config.ts',
     ],
   },
   {
@@ -37,18 +41,7 @@ module.exports = [
       '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
       import: require('eslint-plugin-import'),
       html: require('eslint-plugin-html'),
-    },
-    rules: {
-      '@typescript-eslint/indent': 'off',
-      'import/prefer-default-export': 'off',
-      'linebreak-style': 'off',
-      'no-console': 'off',
-      'max-len': 'off',
-      'no-restricted-syntax': 'warn',
-      'import/no-relative-packages': 'off',
-      'no-new': 'off',
-      indent: ['error', 4, { SwitchCase: 1 }],
-      'no-new': 'off',
+      vue: require('eslint-plugin-vue'),
     },
   },
 ];

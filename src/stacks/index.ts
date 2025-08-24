@@ -12,7 +12,7 @@ import { BlockPublicAccess, Bucket } from 'aws-cdk-lib/aws-s3';
 import {
     AllowedMethods,
     CachePolicy,
-    Distribution, HttpVersion, OriginAccessIdentity, SecurityPolicyProtocol,
+    Distribution, HttpVersion, SecurityPolicyProtocol,
     ViewerProtocolPolicy,
 } from 'aws-cdk-lib/aws-cloudfront';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
