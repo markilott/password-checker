@@ -1,23 +1,24 @@
 // ESLint v9+ Flat Config for src/web
 // See: https://eslint.org/docs/latest/use/configure/configuration-files-new
 
-const { FlatCompat } = require('@eslint/eslintrc');
-const tseslint = require('typescript-eslint');
-const compat = new FlatCompat({ baseDirectory: __dirname });
+const js = require('@eslint/js');
+const pluginVue = require('eslint-plugin-vue');
+const { withVueTs, vueTsConfigs } = require('@vue/eslint-config-typescript');
+const vuePrettierConfig = require('@vue/eslint-config-prettier');
 
-module.exports = [
-  ...compat.extends('plugin:vue/vue3-essential'),
-  ...compat.extends('eslint:recommended'),
-  ...compat.extends('@vue/eslint-config-typescript'),
-  ...compat.extends('@vue/eslint-config-prettier'),
-  ...compat.extends('plugin:@typescript-eslint/recommended'),
-  ...compat.extends('plugin:@typescript-eslint/recommended-requiring-type-checking'),
-  ...tseslint.configs.recommendedTypeChecked,
+module.exports = (async () => [
+  js.configs.recommended,
+  ...(await withVueTs(
+    { rootDir: __dirname },
+    pluginVue.configs['flat/essential'],
+    vueTsConfigs.recommendedTypeChecked,
+  )),
+  vuePrettierConfig,
   {
     ignores: [
       'dist',
       '*.js',
-      'vite.config.ts',
+      'vite.config.mts',
     ],
   },
   {
@@ -29,19 +30,9 @@ module.exports = [
         window: 'readonly',
         document: 'readonly',
       },
-      parserOptions: {
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
-      },
-      env: {
-        browser: true,
-      },
     },
     plugins: {
-      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
-      import: require('eslint-plugin-import'),
-      html: require('eslint-plugin-html'),
-      vue: require('eslint-plugin-vue'),
+      import: require('eslint-plugin-import-x'),
     },
   },
-];
+])();

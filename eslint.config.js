@@ -29,14 +29,13 @@ module.exports = [
         SharedArrayBuffer: 'readonly',
       },
       parserOptions: {
-        project: './tsconfig.json',
         projectService: true,
         tsconfigRootDir: __dirname,
       },
     },
     plugins: {
       '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
-      import: require('eslint-plugin-import'),
+      import: require('eslint-plugin-import-x'),
     },
     rules: {
       '@typescript-eslint/indent': 'off',
