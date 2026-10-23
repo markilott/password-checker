@@ -11,19 +11,18 @@
     "author": "Mark Ilott",
     "license": "MIT",
     "devDependencies": {
-        "@eslint/eslintrc": "^3.3.6",
-        "@types/node": "^24.13.3",
-        "@typescript-eslint/eslint-plugin": "^8.68.0",
-        "@typescript-eslint/parser": "^8.68.0",
-        "eslint": "^10.9.1",
-        "eslint-plugin-html": "^8.2.0",
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^24.19.2",
+        "@typescript-eslint/eslint-plugin": "^8.72.0",
+        "@typescript-eslint/parser": "^8.72.0",
+        "eslint": "^10.13.0",
         "eslint-plugin-import-x": "^4.17.1",
         "ts-node": "^10.9.2",
-        "typescript": "^6.0.0",
-        "typescript-eslint": "^8.68.0"
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.72.0"
     },
     "dependencies": {
-        "aws-cdk-lib": "^2.267.0",
+        "aws-cdk-lib": "^2.274.0",
         "constructs": "^10.8.1",
         "source-map-support": "^0.5.21"
     }
