@@ -1,24 +1,22 @@
 // ESLint v9+ Flat Config for password-checker
 // See: https://eslint.org/docs/latest/use/configure/configuration-files-new
 
-
-const { FlatCompat } = require('@eslint/eslintrc');
+const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
-const compat = new FlatCompat({ baseDirectory: __dirname });
 
-module.exports = [
-  // Top-level ignore for cdk.out and JS files
+module.exports = tseslint.config(
+  // Top-level ignore for cdk.out, JS files, and the web app (which has its own config)
   {
     ignores: [
       '**/cdk.out/**',
       '**/*.js',
       'dist',
       '*.d.ts',
+      'src/web/**',
     ],
   },
-  ...compat.extends('plugin:@typescript-eslint/recommended'),
-  ...compat.extends('plugin:@typescript-eslint/recommended-requiring-type-checking'),
-  ...tseslint.configs.recommendedTypeChecked,
+  eslint.configs.recommended,
+  tseslint.configs.recommendedTypeChecked,
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -34,7 +32,6 @@ module.exports = [
       },
     },
     plugins: {
-      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
       import: require('eslint-plugin-import-x'),
     },
     rules: {
@@ -47,7 +44,6 @@ module.exports = [
       'import/no-relative-packages': 'off',
       'no-new': 'off',
       indent: ['error', 4, { SwitchCase: 1 }],
-      'no-new': 'off',
     },
   },
-];
+);
